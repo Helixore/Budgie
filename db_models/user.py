@@ -1,6 +1,14 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, List
+
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import ForeignKey, Integer, String, Boolean
-from db_models.base import Base
+from .base import Base
+from .association import household_user_association_table
+
+if TYPE_CHECKING:
+    from .household import Household
 
 class User(Base):
     __tablename__ = "Users"
@@ -9,6 +17,9 @@ class User(Base):
     hashed_password: Mapped[str] = mapped_column(String(128), nullable=False)
     disabled: Mapped[bool] = mapped_column(Boolean(), default=False, server_default="False")
     details: Mapped["UserDetails"] = relationship(back_populates="user")
+    households: Mapped[List["Household"]] = relationship(
+        secondary=household_user_association_table, back_populates="users"
+    )
     
 class UserDetails(Base):
     __tablename__ = "UserDetails"

@@ -5,7 +5,7 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from db_models import base, user
+from db_models import base, user, household, association, operations, wallet
 from database import url as DBUrl, engine
 
 # this is the Alembic Config object, which provides

@@ -47,7 +47,7 @@ def get_password_hash(password):
 
 
 def get_user(db: Session, username: str):
-    query = select(User).where(User.username == username).options(selectinload(User.details))
+    query = select(User).where(User.username == username).options(selectinload(User.details), selectinload(User.households))
     result = db.execute(query).scalar_one_or_none()
     if result:
         return result

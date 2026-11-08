@@ -1,6 +1,7 @@
-from typing import Union
+from typing import List, Union
 
 from pydantic import BaseModel
+from .summaries import HouseholdSummary
 
 class UserCreate(BaseModel):
     username: str
@@ -22,3 +23,4 @@ class UserDetailsCreate(BaseModel):
 class UserView(BaseModel):
     username: str
     details: Union[UserDetailsView, None]
+    households: Union[List[HouseholdSummary], None]
