@@ -6,13 +6,13 @@ import json, os
 
 
 if os.path.exists("config.json"):
-    print("Hello!")
-
-with open("config.json") as f:
-    config = json.load(f)
-    
-if not config.get("database"):
-    raise RuntimeError("Bad database setup.")
+    with open("config.json") as f:
+        config = json.load(f)
+        
+    if not config.get("database"):
+        raise RuntimeError("Bad database setup.")
+else:
+    config = os.getenv("config")
 
 config = config.get("database")
 url = URL.create("postgresql+psycopg",
