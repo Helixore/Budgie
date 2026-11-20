@@ -18,6 +18,8 @@ class Household(Base):
     
     id: Mapped[int] = mapped_column(Integer(), primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(255), nullable=False)
+    disabled: Mapped[bool] = mapped_column(Boolean(), default=False, server_default="False")
+    
     users: Mapped[List["User"]] = relationship(
         secondary=household_user_association_table, back_populates="households"
     )

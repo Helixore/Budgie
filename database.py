@@ -2,8 +2,11 @@ from contextlib import contextmanager
 
 from sqlalchemy import URL, create_engine
 from sqlalchemy.orm import sessionmaker
-import json
+import json, os
 
+
+if os.path.exists("config.json"):
+    print("Hello!")
 
 with open("config.json") as f:
     config = json.load(f)

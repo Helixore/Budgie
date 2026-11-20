@@ -8,8 +8,12 @@ class WalletCreate(BaseModel):
     household_id: int
     name: str
     
+class WalletUpdate(BaseModel):
+    name: str | None
+
 class WalletView(BaseModel):
     id: int
     name: str
-    operations: List[Union[OperationSummary, None]]
+    disabled: bool
+    operations: Union[List[OperationSummary], None]
     household: Union[HouseholdSummary, None]

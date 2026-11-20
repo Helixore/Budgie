@@ -11,7 +11,7 @@ from database import get_session
 from db_models.user import User
 from models.user import UserCreate, UserView
 
-router = APIRouter(prefix="/user")
+router = APIRouter(prefix="/users")
 
 @router.get("/self", tags=["User"])
 def show_self(current_user: Annotated[User, Depends(get_current_active_user)]) -> UserView:

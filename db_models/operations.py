@@ -24,6 +24,8 @@ class Operation(Base):
     value: Mapped[Decimal] = mapped_column(Numeric(12,2),default=Decimal("0.00"), nullable=False)
     currency: Mapped[str] = mapped_column(String(3), nullable=False)
     type: Mapped[OperationEnum] = mapped_column(Enum(OperationEnum, name="operation_enum"), nullable=False)
+    disabled: Mapped[bool] = mapped_column(Boolean(), default=False, server_default="False")
+    
     
     wallet_id: Mapped[int] = mapped_column(ForeignKey("Wallets.id"))
     wallet: Mapped["Wallet"] = relationship(back_populates="operations")

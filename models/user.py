@@ -20,7 +20,14 @@ class UserDetailsCreate(BaseModel):
     email: str
     phone: str 
 
+class UserDetailsUpdate(BaseModel):
+    firstName: str | None
+    lastName: str | None
+    email: str | None
+    phone: str | None
+
 class UserView(BaseModel):
+    id: int
     username: str
     details: Union[UserDetailsView, None]
     households: Union[List[HouseholdSummary], None]

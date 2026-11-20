@@ -15,6 +15,7 @@ class Wallet(Base):
     id: Mapped[int] = mapped_column(Integer(), primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(128), nullable=False)
     operations: Mapped[List["Operation"]] = relationship(back_populates="wallet")
+    disabled: Mapped[bool] = mapped_column(Boolean(), default=False, server_default="False")
     
     household_id: Mapped[int] = mapped_column(ForeignKey("Households.id"))
     household: Mapped["Household"] = relationship(back_populates="wallets")

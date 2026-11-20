@@ -12,6 +12,7 @@ class OperationCreate(BaseModel):
     wallet_id: int
     
 class OperationView(BaseModel):
+    id: int
     name: str
     value: Decimal = Field(max_digits=12, decimal_places=2)
     currency: str
